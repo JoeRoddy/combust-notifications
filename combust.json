@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "users": "latest"
+  },
+  "installation": {
+    "components/NavBar.jsx": {
+      "imports": [
+        "import NotificationNavItem from \"./combust_examples/notifications/NotificationNavItem\";"
+      ],
+      "after": {
+        "pattern": "uk-navbar-right\">",
+        "code": ["\n<NotificationNavItem />"]
+      }
+    }
+  }
+}

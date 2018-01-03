@@ -1,15 +1,11 @@
 {
-  "name": "combust-users",
-  "version": "1.0.3",
-  "description": "users module for combust apps",
-  "main": "index.js",
+  "name": "combust-notifications",
+  "version": "1.0.0",
+  "description": "notifications module for combust",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "combust",
-    "users"
-  ],
+  "keywords": ["combust", "notifications", "firebase"],
   "author": "mrjoeroddy@gmail.com",
   "license": "ISC"
 }
