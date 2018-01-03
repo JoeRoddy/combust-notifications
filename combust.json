@@ -3,7 +3,7 @@
     "users": "latest"
   },
   "installation": {
-    "components/NavBar.jsx": {
+    "components/Navbar.jsx": {
       "imports": [
         "import NotificationNavItem from \"./combust_examples/notifications/NotificationNavItem\";"
       ],
