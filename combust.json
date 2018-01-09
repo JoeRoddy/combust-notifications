@@ -1,11 +1,14 @@
 {
-  "dependencies": {
-    "users": "latest"
-  },
   "installation": {
+    "components/Routes.jsx": {
+      "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
+      "renderEnd": [
+        "<Route path=\"/notifications\" component={NotifHistory} />"
+      ]
+    },
     "components/Navbar.jsx": {
       "imports": [
-        "import NotificationNavItem from \"./combust_examples/notifications/NotificationNavItem\";"
+        "import NotificationNavItem from \"./notifications/NotificationNavItem\";"
       ],
       "after": {
         "pattern": "uk-navbar-right\">",

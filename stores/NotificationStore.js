@@ -1,7 +1,5 @@
 import { observable, computed } from "mobx";
 import notificationService from "../service/NotificationService";
-
-//DEPENDENCIES
 import usersStore from "./UsersStore";
 
 class NotificationStore {
@@ -38,6 +36,19 @@ class NotificationStore {
 
   @computed
   get notifications() {
+    const unfiltered = this.notificationMap.toJS();
+    let notifs = {};
+    for (let key in unfiltered) {
+      const notif = unfiltered[key];
+      if (notif.status === "unread" || notif.actions) {
+        notifs[key] = notif;
+      }
+    }
+    return notifs;
+  }
+
+  @computed
+  get allNotifications() {
     return this.notificationMap.toJS();
   }
 
@@ -74,6 +85,15 @@ class NotificationStore {
     const notificationId = notification.id;
     delete notification.id;
     notificationService.updateNotification(notificationId, notification);
+  }
+
+  markNotifAsRead(notifId) {
+    this.notificationMap.get(notifId).status = "read";
+
+    this.updateNotification({
+      id: notifId,
+      status: "read"
+    });
   }
 
   handleNotificationAction(notification, action) {
