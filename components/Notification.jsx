@@ -20,6 +20,9 @@ const Notification = ({ notification }) => {
       ) : (
         <div>{notification.body}</div>
       )}
+      <div className="uk-text-meta">
+        {moment(notification.createdAt).fromNow()}
+      </div>
       {actions && (
         <div className="uk-margin-small-top">
           {actions.map((action, actionI) => {
@@ -40,9 +43,6 @@ const Notification = ({ notification }) => {
           })}
         </div>
       )}
-      <div className="uk-text-meta">
-        {moment(notification.createdAt).fromNow()}
-      </div>
     </li>
   );
 };
