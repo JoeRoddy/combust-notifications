@@ -1,8 +1,13 @@
 {
-  "dependencies": {
-    "users": "latest"
-  },
   "installation": {
+    "components/Routes.jsx": {
+      "imports": [
+        "import NotifHistory from \"./combust_examples/notifications/NotifHistory\";"
+      ],
+      "renderEnd": [
+        "<Route path=\"/notifications\" component={NotifHistory} />"
+      ]
+    },
     "components/Navbar.jsx": {
       "imports": [
         "import NotificationNavItem from \"./combust_examples/notifications/NotificationNavItem\";"
