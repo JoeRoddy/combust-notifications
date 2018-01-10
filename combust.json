@@ -20,7 +20,9 @@
     "notificationIdsByUser": {
       "$uid": {
         ".read": "$uid === auth.uid",
-        ".write": "!data.exists()"
+        "$notifId": {
+          ".write": "!data.exists()"
+        }
       }
     },
     "notificationObjects": {
