@@ -1,10 +1,11 @@
 import firebase from "firebase";
 
 class NotificationService {
-  createNotification(notification, userId) {
+  createNotification(notification, receiverUid, userId) {
     let defaultFields = {
       status: "unread"
     };
+    notification.userId = receiverUid;
     notification.createdAt = new Date().getTime();
     notification.createdBy = userId;
     notification = Object.assign(defaultFields, notification);
@@ -13,7 +14,9 @@ class NotificationService {
     let notificationId = notificationRef.key;
     notificationRef.set(notification);
     db
-      .ref(`notifications/notificationIdsByUser/${userId}/${notificationId}`)
+      .ref(
+        `notifications/notificationIdsByUser/${receiverUid}/${notificationId}`
+      )
       .set(true);
   }
 

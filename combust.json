@@ -15,5 +15,26 @@
         "code": ["\n<NotificationNavItem />"]
       }
     }
+  },
+  "rules": {
+    "notificationIdsByUser": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "!data.exists()"
+      }
+    },
+    "notificationObjects": {
+      "$nid": {
+        ".read": "data.child('userId').val()===auth.uid",
+        ".write": "!data.exists() || data.child('userId').val() === auth.uid",
+        ".validate": "newData.hasChildren(['createdBy', 'status'])",
+        "createdBy": {
+          ".validate": "newData.val()===auth.uid"
+        },
+        "status": {
+          ".validate": "newData.val()==='unread'"
+        }
+      }
+    }
   }
 }
