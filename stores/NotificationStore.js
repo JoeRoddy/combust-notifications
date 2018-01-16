@@ -1,11 +1,11 @@
 import { observable, computed } from "mobx";
 
 import notificationService from "../service/NotificationService";
-import usersStore from "./UsersStore";
+import userStore from "./UserStore";
 
 class NotificationStore {
   init() {
-    usersStore.onLogin(this.loadNotificationsForUser.bind(this));
+    userStore.onLogin(this.loadNotificationsForUser.bind(this));
   }
 
   notificationActionHandlers = new Map();
@@ -68,7 +68,7 @@ class NotificationStore {
   }
 
   createNotification(notification) {
-    const userId = usersStore.userId;
+    const userId = userStore.userId;
     if (!notification || !userId) {
       return;
     }
@@ -77,7 +77,7 @@ class NotificationStore {
 
   deleteNotification(notificationId) {
     this.notificationMap.delete(notificationId);
-    notificationService.deleteNotification(notificationId, usersStore.userId);
+    notificationService.deleteNotification(notificationId, userStore.userId);
   }
 
   updateNotification(notification) {

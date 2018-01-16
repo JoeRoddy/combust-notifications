@@ -1,4 +1,7 @@
 {
+  "dependencies": {
+    "users": "latest"
+  },
   "installation": {
     "components/Routes.jsx": {
       "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
