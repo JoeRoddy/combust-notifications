@@ -77,6 +77,9 @@ class NotificationService {
   }
 }
 
+const notificationService = new NotificationService();
+export default notificationService;
+
 const _loadNotificationIdsByUser = function(userId, callback) {
   firebase
     .database()
@@ -115,7 +118,3 @@ const _listenToNotificationIdsByUser = function(userId, callback) {
       callback(null, snap.key);
     });
 };
-
-const notificationService = new NotificationService();
-
-export default notificationService;

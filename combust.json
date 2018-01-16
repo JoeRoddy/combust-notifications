@@ -32,9 +32,6 @@
         ".validate": "newData.hasChildren(['createdBy', 'status'])",
         "createdBy": {
           ".validate": "newData.val()===auth.uid"
-        },
-        "status": {
-          ".validate": "newData.val()==='unread'"
         }
       }
     }

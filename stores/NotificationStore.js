@@ -1,10 +1,10 @@
 import { observable, computed } from "mobx";
+
 import notificationService from "../service/NotificationService";
 import usersStore from "./UsersStore";
 
 class NotificationStore {
-  subscribeToEvents() {
-    //must be inline functions, or use .bind(this)
+  init() {
     usersStore.onLogin(this.loadNotificationsForUser.bind(this));
   }
 
@@ -44,7 +44,7 @@ class NotificationStore {
         notifs[key] = notif;
       }
     }
-    return notifs;
+    return unfiltered;
   }
 
   @computed
@@ -87,9 +87,16 @@ class NotificationStore {
     notificationService.updateNotification(notificationId, notification);
   }
 
+  markNotifAsClicked(notifId) {
+    this.notificationMap.get(notifId).status = "read";
+    this.updateNotification({
+      id: notifId,
+      status: "clicked"
+    });
+  }
+
   markNotifAsRead(notifId) {
     this.notificationMap.get(notifId).status = "read";
-
     this.updateNotification({
       id: notifId,
       status: "read"

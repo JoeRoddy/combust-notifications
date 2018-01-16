@@ -1,56 +1,83 @@
-import React from "react";
+import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
 import Notification from "./Notification";
 import notificationStore from "../../stores/NotificationStore";
+import Icon from "../reusable/Icon";
+import "./styles/Notifications.css";
 
-const NotificationNavItem = props => {
-  const notifications = notificationStore.notifications;
-  let notifKeys = notifications ? Object.keys(notifications) : [];
-  notifKeys = notifKeys.reverse().slice(0, 6); //render 6 most recent notifs
+@observer
+export default class NotificationNavItem extends Component {
+  state = {
+    isOpen: false
+  };
 
-  return (
-    <div className="NotificationNavItem uk-navbar-item">
-      <span className="uk-inline">
-        <Icon
-          className={
-            "uk-position-center uk-icon " +
-            (notifKeys.length > 0 ? "uk-text-danger" : "uk-text")
-          }
-          type="bell"
-        />
-        {notifKeys.length > 0 && (
-          <span className="uk-badge badge-danger uk-position-bottom-left">
-            {notifKeys.length}
-          </span>
+  toggleDropDown = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  render() {
+    const notifications = notificationStore.notifications;
+    let notifKeys = notifications ? Object.keys(notifications) : [];
+    let numNotifications = 0;
+    notifKeys.forEach(id => {
+      numNotifications += notifications[id].status === "unread" ? 1 : 0;
+    });
+    notifKeys = notifKeys.reverse().slice(0, 5); //render 5 most recent notifs
+
+    return (
+      <div className="NotificationNavItem uk-navbar-item">
+        <span className="uk-inline">
+          <Icon
+            className={
+              "uk-position-center uk-icon " +
+              (numNotifications > 0 ? "uk-text-danger" : "uk-text")
+            }
+            onClick={this.toggleDropDown}
+            type="bell"
+          />
+          {numNotifications > 0 && (
+            <span className="uk-badge badge-danger uk-position-bottom-left">
+              {numNotifications}
+            </span>
+          )}
+        </span>
+        {this.state.isOpen && (
+          <div className="uk-card uk-card-default uk-padding-small dropdown">
+            <ul className="uk-nav uk-dropdown-nav">
+              <li className="uk-nav-header uk-margin-small-bottom">
+                Notifications
+              </li>
+              <ul className="uk-list uk-list-divider">
+                {notifKeys.map((notifId, i) => {
+                  const notif = notifications[notifId];
+                  if (!notif) return <span />;
+                  return (
+                    <Notification
+                      key={i}
+                      notification={notif}
+                      toggleDropDown={this.toggleDropDown}
+                    />
+                  );
+                })}
+                <div className="uk-margin-small-top">
+                  {notifKeys.length <= 0 ? (
+                    <span className="uk-text-meta">No new notifications</span>
+                  ) : (
+                    <Link onClick={this.toggleDropDown} to="/notifications">
+                      View all notifications
+                    </Link>
+                  )}
+                </div>
+              </ul>
+            </ul>
+          </div>
         )}
-      </span>
-      <div uk-dropdown="mode: click">
-        <ul className="uk-nav uk-dropdown-nav">
-          <li className="uk-nav-header uk-margin-small-bottom">
-            Notifications
-          </li>
-          <ul className="uk-list uk-list-divider">
-            {notifKeys.map((notifId, i) => {
-              const notif = notifications[notifId];
-              if (!notif) return <span />;
-              return <Notification key={i} notification={notif} />;
-            })}
-            {notifKeys.length <= 0 && <li>No new notifications</li>}
-            <div className="uk-margin-small-top">
-              <Link to="/notifications">View all notifications</Link>
-            </div>
-          </ul>
-        </ul>
+        {this.state.isOpen && (
+          <span className="onClickOutside" onClick={this.toggleDropDown} />
+        )}
       </div>
-    </div>
-  );
-};
-
-export default observer(NotificationNavItem);
-
-const Icon = props => {
-  //eslint-disable-next-line
-  return <a uk-icon={"icon: " + props.type} {...props} />;
-};
+    );
+  }
+}
