@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Notification from "./Notification";
 import notificationStore from "../../stores/NotificationStore";
 import Icon from "../reusable/Icon";
-import "./styles/Notifications.css";
+import "./styles/Notifications.scss";
 
 @observer
 export default class NotificationNavItem extends Component {
