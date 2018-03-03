@@ -1,6 +1,6 @@
 import { observable, computed } from "mobx";
 
-import notificationService from "../service/NotificationService";
+import notificationDb from "../db/NotificationDb";
 import userStore from "./UserStore";
 
 class NotificationStore {
@@ -22,12 +22,9 @@ class NotificationStore {
     if (!userId) {
       return;
     }
-    notificationService.listenToNotificationsByUser(
-      user.id,
-      (err, notification) => {
-        err ? console.log(err) : this.storeNotification(notification, userId);
-      }
-    );
+    notificationDb.listenToNotificationsByUser(user.id, (err, notification) => {
+      err ? console.log(err) : this.storeNotification(notification, userId);
+    });
   }
 
   storeNotification(notification, userId) {
@@ -55,7 +52,7 @@ class NotificationStore {
   getNotificationById(notificationId) {
     let notification = this.notificationMap.get(notificationId);
     if (!notification) {
-      notificationService.listenToNotification(
+      notificationDb.listenToNotification(
         notificationId,
         (err, notification) => {
           err
@@ -72,19 +69,19 @@ class NotificationStore {
     if (!notification || !userId) {
       return;
     }
-    notificationService.createNotification(notification, userId);
+    notificationDb.createNotification(notification, userId);
   }
 
   deleteNotification(notificationId) {
     this.notificationMap.delete(notificationId);
-    notificationService.deleteNotification(notificationId, userStore.userId);
+    notificationDb.deleteNotification(notificationId, userStore.userId);
   }
 
   updateNotification(notification) {
     if (!notification) return;
     const notificationId = notification.id;
     delete notification.id;
-    notificationService.updateNotification(notificationId, notification);
+    notificationDb.updateNotification(notificationId, notification);
   }
 
   markNotifAsClicked(notifId) {

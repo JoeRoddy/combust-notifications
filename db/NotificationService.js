@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-class NotificationService {
+class NotificationDb {
   createNotification(notification, receiverUid, userId) {
     let defaultFields = {
       status: "unread"
@@ -77,8 +77,8 @@ class NotificationService {
   }
 }
 
-const notificationService = new NotificationService();
-export default notificationService;
+const notificationDb = new NotificationDb();
+export default notificationDb;
 
 const _loadNotificationIdsByUser = function(userId, callback) {
   firebase
