@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
-import Notification from "./Notification";
+import userStore from "../../stores/UserStore";
 import notificationStore from "../../stores/NotificationStore";
+import Notification from "./Notification";
 import Icon from "../reusable/Icon";
 import "./styles/Notifications.scss";
 
@@ -18,6 +19,10 @@ export default class NotificationNavItem extends Component {
   };
 
   render() {
+    if (!userStore.userId) {
+      return <span />;
+    }
+
     const notifications = notificationStore.notifications;
     let notifKeys = notifications ? Object.keys(notifications) : [];
     let numNotifications = 0;
