@@ -33,7 +33,7 @@
       "after": {
         "pattern": "const COMBUST_MENU_ITEMS = [",
         "code": [
-          "{\ntitle: \"Notifications\",\nicon: \"notifications\",\nonPress: () => {userStore.logout();nav.navigate(\"NotifHistory\");\n}\n},"
+          "{\ntitle: \"Notifications\",\nicon: \"notifications\",\nonPress: () => {\nnav.navigate(\"NotifHistory\");\n}\n},"
         ]
       }
     }
