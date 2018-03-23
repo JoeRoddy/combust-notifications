@@ -19,6 +19,25 @@
       }
     }
   },
+  "installation_mobile": {
+    "components/Routes.js": {
+      "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
+      "after": {
+        "pattern": "COMBUST_SCREENS = {"
+      },
+      "code": [
+        "NotifHistory: { screen: NotifHistory, path: \"/NotifHistory\" }"
+      ]
+    },
+    "components/reusable/SideMenu.js": {
+      "after": {
+        "pattern": "const COMBUST_MENU_ITEMS = [",
+        "code": [
+          "{\ntitle: \"Notifications\",\nicon: \"notifications\",\nonPress: () => {userStore.logout();nav.navigate(\"NotifHistory\");\n}\n},"
+        ]
+      }
+    }
+  },
   "rules": {
     "notificationIdsByUser": {
       "$uid": {
