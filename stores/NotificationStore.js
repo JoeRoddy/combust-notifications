@@ -16,6 +16,7 @@ class NotificationStore {
   };
 
   @observable notificationMap = new Map();
+  @observable numUnreadNotifs = 0;
 
   loadNotificationsForUser(user) {
     const userId = user.id;
@@ -29,6 +30,15 @@ class NotificationStore {
 
   storeNotification(notification, userId) {
     this.notificationMap.set(notification.id, notification);
+    this.determineUnreadNotifs();
+  }
+
+  determineUnreadNotifs() {
+    let count = 0;
+    this.notificationMap.forEach(notif => {
+      count += notif.status === "unread" ? 1 : 0;
+    });
+    this.numUnreadNotifs = count;
   }
 
   @computed
