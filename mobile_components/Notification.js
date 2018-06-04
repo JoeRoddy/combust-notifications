@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Card, Button } from "react-native-elements";
+import { Card } from "react-native-elements";
 import moment from "moment";
 
 import notificationStore from "../../stores/NotificationStore";
 import nav from "../../helpers/NavigatorHelper";
 import { colors, textStyles } from "../../assets/styles/AppStyles";
+import { Button } from "../reusable";
 
 @observer
 export default class Notification extends Component {
