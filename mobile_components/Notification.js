@@ -33,6 +33,7 @@ export default class Notification extends Component {
   }
 
   handleNotificationLink = link => {
+    // "/profile/uid" => navigate("Profile", {id: "uid"});
     let arr = link.substring(1).split("/");
     let path = arr[0];
     path = path.charAt(0).toUpperCase() + path.substring(1);
@@ -50,10 +51,7 @@ export default class Notification extends Component {
       NotifCardJsx
     ) : (
       <TouchableOpacity
-        onPress={() => {
-          console.log("navigating to :", notification.link);
-          this.handleNotificationLink(notification.link);
-        }}
+        onPress={() => this.handleNotificationLink(notification.link)}
       >
         {NotifCardJsx}
       </TouchableOpacity>
