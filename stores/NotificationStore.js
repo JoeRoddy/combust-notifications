@@ -54,7 +54,9 @@ class NotificationStore {
 
   @computed
   get allNotifications() {
-    return this.notificationMap.toJS();
+    let allNotifs = {};
+    this.notificationMap.forEach((n, id) => (allNotifs[id] = n));
+    return allNotifs;
   }
 
   getNotificationById(notificationId) {
