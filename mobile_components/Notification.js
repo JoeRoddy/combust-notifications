@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { Card, Button } from "react-native-elements";
+import { Card } from "react-native-elements";
 import moment from "moment";
 
 import notificationStore from "../../stores/NotificationStore";
 import nav from "../../helpers/NavigatorHelper";
 import { colors, textStyles } from "../../assets/styles/AppStyles";
+import { Button } from "../reusable";
 
 @observer
-export default class Notification extends Component {
+class Notification extends Component {
   state = {
     displayAsUnread: false
   };
@@ -32,6 +33,7 @@ export default class Notification extends Component {
   }
 
   handleNotificationLink = link => {
+    // "/profile/uid" => navigate("Profile", {id: "uid"});
     let arr = link.substring(1).split("/");
     let path = arr[0];
     path = path.charAt(0).toUpperCase() + path.substring(1);
@@ -49,10 +51,7 @@ export default class Notification extends Component {
       NotifCardJsx
     ) : (
       <TouchableOpacity
-        onPress={() => {
-          console.log("navigating to :", notification.link);
-          this.handleNotificationLink(notification.link);
-        }}
+        onPress={() => this.handleNotificationLink(notification.link)}
       >
         {NotifCardJsx}
       </TouchableOpacity>
@@ -113,3 +112,5 @@ const NotifCard = ({ that, notification, actions }) => (
     )}
   </Card>
 );
+
+export default Notification;

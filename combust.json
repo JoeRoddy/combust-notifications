@@ -4,7 +4,9 @@
   },
   "installation": {
     "components/Routes.jsx": {
-      "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
+      "imports": [
+        "import NotifHistory from \"./notifications/NotifHistory\";"
+      ],
       "renderEnd": [
         "<Route path=\"/notifications\" component={NotifHistory} />"
       ]
@@ -15,13 +17,17 @@
       ],
       "after": {
         "pattern": "uk-navbar-right\">",
-        "code": ["\n<NotificationNavItem />"]
+        "code": [
+          "\n<NotificationNavItem />"
+        ]
       }
     }
   },
   "installation_mobile": {
     "components/Routes.js": {
-      "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
+      "imports": [
+        "import NotifHistory from \"./notifications/NotifHistory\";"
+      ],
       "after": {
         "pattern": "COMBUST_SCREENS = {",
         "code": [
@@ -43,7 +49,7 @@
       "$uid": {
         ".read": "$uid === auth.uid",
         "$notifId": {
-          ".write": "!data.exists()"
+          ".write": "!data.exists() || (!newData.exists() && $uid === auth.uid)"
         }
       }
     },

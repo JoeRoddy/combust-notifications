@@ -9,7 +9,7 @@ import Icon from "../reusable/Icon";
 import "./styles/Notifications.scss";
 
 @observer
-export default class NotificationNavItem extends Component {
+class NotificationNavItem extends Component {
   state = {
     isOpen: false
   };
@@ -33,21 +33,19 @@ export default class NotificationNavItem extends Component {
 
     return (
       <div className="NotificationNavItem uk-navbar-item">
-        <span className="uk-inline">
-          <Icon
-            className={
-              "uk-position-center uk-icon " +
-              (numNotifications > 0 ? "uk-text-danger" : "uk-text")
-            }
-            onClick={this.toggleDropDown}
-            type="bell"
-          />
-          {numNotifications > 0 && (
-            <span className="uk-badge badge-danger uk-position-bottom-left">
-              {numNotifications}
-            </span>
-          )}
-        </span>
+        <Icon
+          className={
+            "uk-position-center uk-icon " +
+            (numNotifications > 0 ? "uk-text-danger" : "uk-text")
+          }
+          onClick={this.toggleDropDown}
+          type="bell"
+        />
+        {numNotifications > 0 && (
+          <span className="uk-badge badge-danger uk-position-bottom-left">
+            {numNotifications}
+          </span>
+        )}
         {this.state.isOpen && (
           <div className="uk-card uk-card-default uk-padding-small dropdown">
             <ul className="uk-nav uk-dropdown-nav">
@@ -86,3 +84,5 @@ export default class NotificationNavItem extends Component {
     );
   }
 }
+
+export default NotificationNavItem;

@@ -6,7 +6,7 @@ import { observer } from "mobx-react";
 import notificationStore from "../../stores/NotificationStore";
 
 @observer
-export default class Notification extends Component {
+class Notification extends Component {
   state = {
     displayAsUnread: false
   };
@@ -83,3 +83,5 @@ export default class Notification extends Component {
     );
   }
 }
+
+export default Notification;
