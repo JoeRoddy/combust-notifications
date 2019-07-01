@@ -43,15 +43,13 @@ class NotificationStore {
 
   @computed
   get notifications() {
-    const unfiltered = this.notificationMap.toJS();
     let notifs = {};
-    for (let key in unfiltered) {
-      const notif = unfiltered[key];
+    this.notificationMap.forEach((notif, key) => {
       if (notif.status === "unread" || notif.actions) {
         notifs[key] = notif;
       }
-    }
-    return unfiltered;
+    });
+    return notifs;
   }
 
   @computed
