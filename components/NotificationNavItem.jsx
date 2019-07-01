@@ -26,9 +26,10 @@ class NotificationNavItem extends Component {
     const notifications = notificationStore.notifications;
     let notifKeys = notifications ? Object.keys(notifications) : [];
     let numNotifications = 0;
-    notifKeys.forEach(id => {
-      numNotifications += notifications[id].status === "unread" ? 1 : 0;
-    });
+    !this.state.isOpen && // once dropdown is open, remove number badge
+      notifKeys.forEach(id => {
+        numNotifications += notifications[id].status === "unread" ? 1 : 0;
+      });
     notifKeys = notifKeys.reverse().slice(0, 5); //render 5 most recent notifs
 
     return (
