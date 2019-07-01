@@ -7,8 +7,12 @@ import notificationStore from "../../stores/NotificationStore";
 
 @observer
 class Notification extends Component {
+  state = {
+    shouldMarkAsRead: true
+  };
+
   componentWillUnmount() {
-    this.markNotifAsRead();
+    this.state.shouldMarkAsRead && this.markNotifAsRead();
   }
 
   markNotifAsRead() {
@@ -53,10 +57,12 @@ class Notification extends Component {
                   key={actionI}
                   className="uk-button uk-button-default uk-button-small"
                   onClick={e => {
-                    notificationStore.handleNotificationAction(
-                      notification,
-                      action
-                    );
+                    this.setState({ shouldMarkAsRead: false }, () => {
+                      notificationStore.handleNotificationAction(
+                        notification,
+                        action
+                      );
+                    });
                   }}
                 >
                   {action}
