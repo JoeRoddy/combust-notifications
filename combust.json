@@ -3,31 +3,25 @@
     "users": "latest"
   },
   "installation": {
-    "components/Routes.jsx": {
-      "imports": [
-        "import NotifHistory from \"./notifications/NotifHistory\";"
-      ],
+    "src/components/Routes.jsx": {
+      "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
       "renderEnd": [
         "<Route path=\"/notifications\" component={NotifHistory} />"
       ]
     },
-    "components/Navbar.jsx": {
+    "src/components/Navbar.jsx": {
       "imports": [
         "import NotificationNavItem from \"./notifications/NotificationNavItem\";"
       ],
       "after": {
         "pattern": "uk-navbar-right\">",
-        "code": [
-          "\n<NotificationNavItem />"
-        ]
+        "code": ["\n<NotificationNavItem />"]
       }
     }
   },
   "installation_mobile": {
-    "components/Routes.js": {
-      "imports": [
-        "import NotifHistory from \"./notifications/NotifHistory\";"
-      ],
+    "src/components/Routes.js": {
+      "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
       "after": {
         "pattern": "COMBUST_SCREENS = {",
         "code": [
@@ -35,7 +29,7 @@
         ]
       }
     },
-    "components/reusable/SideMenu.js": {
+    "src/components/reusable/SideMenu.js": {
       "after": {
         "pattern": "const COMBUST_MENU_ITEMS = [",
         "code": [
