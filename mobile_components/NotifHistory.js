@@ -2,7 +2,7 @@ import React from "react";
 import { View, ScrollView } from "react-native";
 import { observer } from "mobx-react";
 
-import notifStore from "../../stores/NotificationStore";
+import notifStore from "../../stores/notificationStore";
 import Header from "../reusable/Header";
 import Notification from "./Notification";
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { observer } from "mobx-react";
 
-import notificationStore from "../../stores/NotificationStore";
+import notificationStore from "../../stores/notificationStore";
 
 @observer
 class Notification extends Component {

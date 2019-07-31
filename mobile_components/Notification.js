@@ -4,8 +4,8 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Card } from "react-native-elements";
 import moment from "moment";
 
-import notificationStore from "../../stores/NotificationStore";
-import nav from "../../helpers/NavigatorHelper";
+import notificationStore from "../../stores/notificationStore";
+import nav from "../../helpers/navigatorHelper";
 import { colors, textStyles } from "../../assets/styles/AppStyles";
 import { Button } from "../reusable";
 

@@ -1,6 +1,6 @@
 import { observable, computed } from "mobx";
 
-import notificationDb from "../db/NotificationDb";
+import notificationDb from "../db/notificationDb";
 import userStore from "./UserStore";
 
 class NotificationStore {

@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import notifStore from "../../stores/NotificationStore";
+import notifStore from "../../stores/notificationStore";
 import Notification from "./Notification";
 
 const NotifHistory = props => {

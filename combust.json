@@ -3,13 +3,13 @@
     "users": "latest"
   },
   "installation": {
-    "src/components/Routes.jsx": {
+    "src/components/app/Routes.jsx": {
       "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
       "renderEnd": [
         "<Route path=\"/notifications\" component={NotifHistory} />"
       ]
     },
-    "src/components/Navbar.jsx": {
+    "src/components/app/Navbar.jsx": {
       "imports": [
         "import NotificationNavItem from \"./notifications/NotificationNavItem\";"
       ],
@@ -20,7 +20,7 @@
     }
   },
   "installation_mobile": {
-    "src/components/Routes.js": {
+    "src/components/app/Routes.js": {
       "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
       "after": {
         "pattern": "COMBUST_SCREENS = {",

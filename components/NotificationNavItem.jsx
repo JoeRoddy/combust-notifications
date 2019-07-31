@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
 import userStore from "../../stores/UserStore";
-import notificationStore from "../../stores/NotificationStore";
+import notificationStore from "../../stores/notificationStore";
 import Notification from "./Notification";
 import Icon from "../reusable/Icon";
 import "./styles/Notifications.scss";
