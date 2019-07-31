@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
-import userStore from "../../stores/UserStore";
+import userStore from "../../stores/userStore";
 import notificationStore from "../../stores/notificationStore";
 import Notification from "./Notification";
 import Icon from "../reusable/Icon";
