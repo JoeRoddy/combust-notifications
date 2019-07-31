@@ -4,7 +4,9 @@
   },
   "installation": {
     "src/components/app/Routes.jsx": {
-      "imports": ["import NotifHistory from \"./notifications/NotifHistory\";"],
+      "imports": [
+        "import NotifHistory from \"../notifications/NotifHistory\";"
+      ],
       "renderEnd": [
         "<Route path=\"/notifications\" component={NotifHistory} />"
       ]
