@@ -11,7 +11,7 @@
     },
     "src/components/app/Navbar.jsx": {
       "imports": [
-        "import NotificationNavItem from \"./notifications/NotificationNavItem\";"
+        "import NotificationNavItem from \"../notifications/NotificationNavItem\";"
       ],
       "after": {
         "pattern": "uk-navbar-right\">",
